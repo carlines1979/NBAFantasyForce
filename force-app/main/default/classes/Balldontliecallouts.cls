@@ -61,8 +61,8 @@ public class Balldontliecallouts {
             
             List<Team__c> teams = [Select Id, Name FROM Team__c ];
             
-            // Future method calling API once per page. (grouping in 3)
-            for (Integer page=100 ; page<132 ; page++){
+            
+            for (Integer page=100 ; page<133 ; page++){
                 System.debug('PAGE: ' + page + ' of: ' + pages);
             	players.addAll(getPlayersCallOut(page , teams)) ;
                 
@@ -154,7 +154,7 @@ public class Balldontliecallouts {
                     }
                     
                     String lastName = (String)playerInfo.get('last_name'); 
-                    if (!String.isEmpty(lastName)) { 
+                    if (!String.isEmpty(lastName) && !(position=='Unknown')) { 
                         Contact insertPlayer = new Contact (FirstName = (String)playerInfo.get('first_name'),
                                                             LastName  = (String)playerInfo.get('last_name'),
                                                             position__c   = position ,

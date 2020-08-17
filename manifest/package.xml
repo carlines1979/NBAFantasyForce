@@ -4,11 +4,13 @@
         <members>Balldontliecallouts</members>
         <members>PlayerStats</members>
         <members>TeamGames</members>
+        <members>FantasyTeams</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>Team__c</members>
         <members>Contact</members>
+        <members>FantasyTeam__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -17,7 +19,8 @@
     </types>
     <types>
         <members>Team__c</members>
-        <members>Contact</members>
+        <members>FantasyTeam__c</members>
+        <members>Players</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -28,10 +31,12 @@
         <members>PlayerStats</members>
         <members>TeamGames</members>
         <members>TeamLogo</members>
+        <members>NewTeam</members>
+        <members>MyTeams</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>*</members>
+        <members>LOGOS</members>
         <name>StaticResource</name>
     </types>
     <version>48.0</version>

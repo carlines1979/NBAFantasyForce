@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="FantasyTeams" access="global" >
+	<aura:attribute name="newFantasyTeam" type="FantasyTeam__c"
+                    default="{ 'sobjectType': 'FantasyTeam__c',
+                             'FantasyName__c':''}" />
+    
+    
+    <div aria-labelledby="newteamform">
+        
+        <fieldset class="slds-box slds-theme--default slds-container--medium">
+            <legend id="newteamform" class="slds-text-heading--small 
+              slds-p-vertical--medium">
+              Create a Team
+            </legend>
+        
+            <form class="slds-form--stacked">          
+                <lightning:input aura:id="FantasyTeamform" label="Team Name"
+                                 name="teamname"
+                                 value="{!v.newFantasyTeam.FantasyName__c}"
+                                 required="true"/> 
+                 <lightning:button label="Create Team" 
+                                  class="slds-m-top--medium"
+                                  variant="brand"
+                                  onclick="{!c.clickCreate}"/>
+            </form>
+        </fieldset>
+    </div>
+</aura:component>
