@@ -1,0 +1,93 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="PlayerStats" access="global" >
+	<aura:attribute name="playerrecord" type="Contact" access="global"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+    <aura:attribute name="data" type="Map" /> 
+     
+    
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    
+    
+    <aura:handler name="ClosePlayerGames" event="c:ClosePlayerGames" action="{!c.onmodalclose}" />
+    
+    <force:recordData aura:id="recordLoader"
+    recordId="{!v.recordId}"
+    fields="Name,Team__r.Name,ServerId__c"
+    targetFields="{!v.playerrecord}"
+    targetError="{!v.recordLoadError}"
+    recordUpdated="{!c.recordUpdate}"
+    />
+    
+    <lightning:card iconName="standard:lightning_usage">
+        <aura:set attribute="title">
+              {! v.playerrecord.Name }'s Last season stats. <br></br>
+              {!v.playerrecord.Team__r.Name}
+        </aura:set>
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="6" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                <aura:if isTrue="{! v.isLoading }">
+                            <div aura:id="spinnerId" class="slds-spinner_container">
+                                <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                                    <span class="slds-assistive-text">Loading...</span>
+                                    <div class="slds-spinner__dot-a"></div>
+                                    <div class="slds-spinner__dot-b"></div>
+                                </div>
+                            </div>
+                </aura:if>
+				<div class="slds-p-horizontal--small">
+                        <div class="statsproperty">
+                            <span class="label">Points per Game: </span>
+                            <span><lightning:formattedNumber value="{!v.data.pts}" maximumFractionDigits="2"/></span>
+                        </div>
+                        <div class="statsproperty">
+                            <span class="label">Assistances: </span>
+                            <span><lightning:formattedNumber value="{!v.data.ast}" maximumFractionDigits="2"/></span>
+                        </div>
+                    	<div class="statsproperty">
+                            <span class="label">Steals: </span>
+                            <span><lightning:formattedNumber value="{!v.data.stl}" maximumFractionDigits="2"/></span>
+                        </div>
+                    	<div class="statsproperty">
+                            <span class="label">3P FG pct: </span>
+                            <span><lightning:formattedNumber value="{!v.data.fg3_pct}" maximumFractionDigits="2"/></span>
+                        </div>
+                    	<div class="statsproperty">
+                            <span class="label">free throws pct: </span>
+                            <span><lightning:formattedNumber value="{!v.data.fgt_pct}" maximumFractionDigits="2"/></span>
+                        </div>
+                    	
+
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="6" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+				<div class="slds-p-horizontal--small">
+                        <div class="statsproperty">
+                            <span class="label">Rebounds: </span>
+                            <span><lightning:formattedNumber value="{!v.data.reb}" maximumFractionDigits="2"/></span>
+                        </div>
+                        <div class="statsproperty">
+                            <span class="label">Defensive Rebounds: </span>
+                            <span><lightning:formattedNumber value="{!v.data.dreb}" maximumFractionDigits="2"/></span>
+                        </div>
+                    	<div class="statsproperty">
+                            <span class="label">Blocks: </span>
+                            <span><lightning:formattedNumber value="{!v.data.blk}" maximumFractionDigits="2"/></span>
+                        </div>
+                    	<div class="statsproperty">
+                            <span class="label">2P FG pct: </span>
+                            <span><lightning:formattedNumber value="{!v.data.fg2_pct}" maximumFractionDigits="2"/></span>
+                        </div>
+                    	<lightning:button label="See Games" 
+                                  variant="brand"
+                                  class="slds-button"
+                                  onclick="{!c.onclicksubmit}"
+                                  />
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:card>
+    
+    <aura:if isTrue="{!v.isModalOpen}">
+       		<c:PlayerGames aura:id="CmpPlayerGames"/>
+    </aura:if>
+</aura:component>

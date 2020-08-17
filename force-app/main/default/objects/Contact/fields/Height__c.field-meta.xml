@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Height__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(Height_Feet__c) &amp; &apos;Feet&apos; &amp;  TEXT(Height_Inches__c) &amp; &apos;Inches&apos;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Height</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

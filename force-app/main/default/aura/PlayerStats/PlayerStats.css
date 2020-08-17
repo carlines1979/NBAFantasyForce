@@ -1,0 +1,9 @@
+.THIS {
+}
+.THIS .label {
+    font-weight: bold;
+    display: block;
+}
+.THIS .statsproperty {
+    margin-bottom: 2px;
+}

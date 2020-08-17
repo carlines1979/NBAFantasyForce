@@ -1,0 +1,83 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="TeamGames" access="global" >
+    <aura:attribute name="selectedSeason" type="String" /> 
+    <aura:attribute name="selectedTeamId" type="String" />
+    <aura:attribute name="data" type="Object[]"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="page" type="Integer" default=""/>
+    <aura:attribute name="lastpage" type="Integer" default=""/>
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+    <aura:attribute name="isLastPage" type="Boolean" default="false"/>
+    <aura:attribute name="isFirstPage" type="Boolean" default="true"/>
+    
+    
+    <aura:method name="initMethod" action="{!c.doinit}" 
+                 description="Method receive parameters" access="global" > 
+        <aura:attribute name="season" type="String" default=""/> 
+        <aura:attribute name="teamId" type="String" /> 
+    </aura:method>
+    
+    <!-- Register Component event to close the popup--> 
+    <aura:registerEvent name="CloseTeamGames" type="c:CloseTeamGames"  />
+    
+    
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box Header Starts here-->
+            <header class="slds-modal__header">
+                <div class="slds-align_absolute-center">
+                    <span class="slds-text-heading_medium">Season: </span>
+                    <span class="slds-text-heading_medium">{!v.selectedSeason} </span>
+                </div>
+            </header>
+            <!--Modal/Popup Box Body Starts here-->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <!-- the container element determine the height of the datatable -->
+                <div style="height: 300px" class="slds-table--header-fixed_container">
+                    <div class="slds-scrollable_y" style="height:100%;">
+                    <fieldset class="slds-box slds-theme--default " style="height:99%;" >
+                        <aura:if isTrue="{! v.isLoading }">
+                            <div aura:id="spinnerId" class="slds-spinner_container">
+                                <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                                    <span class="slds-assistive-text">Loading...</span>
+                                    <div class="slds-spinner__dot-a"></div>
+                                    <div class="slds-spinner__dot-b"></div>
+                                </div>
+                            </div>
+                        </aura:if>
+                    	<aura:if isTrue="{!not(empty(v.data))}">
+                            <lightning:datatable
+                                    keyField="gameDate"                      
+                                    data="{! v.data }"
+                                    columns="{! v.columns }"
+                                    hideCheckboxColumn="true"/>
+                        <aura:set attribute="else" >
+                            <div class="slds-align_absolute-center" >No Data available</div>
+        				</aura:set>   
+                        </aura:if>
+                    </fieldset>
+                    </div>
+                </div>
+                 
+            </div>
+            <!--Modal/Popup Box Footer Starts here-->
+            <footer class="slds-modal__footer">
+                <lightning:button variant="neutral"
+                                  label="Previous"
+                                  title="Previous"
+                                  onclick="{! c.previouspage }"
+                                  disabled="{!v.isFirstPage}"/>
+                <lightning:button variant="neutral"
+                                  label="Next"
+                                  title="Next"
+                                  onclick="{! c.nextpage }"
+                                  disabled="{!v.isLastPage}"/>
+                <lightning:button variant="neutral"
+                                  label="Close"
+                                  title="Close"
+                                  onclick="{! c.onmodalclose }"/>
+                                  
+                
+            </footer>
+        </div>
+    </section>
+</aura:component>
