@@ -4,6 +4,15 @@
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
     <label>FantasyPlayer</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Contact.RecordType.DeveloperName</field>
+            <operation>notEqual</operation>
+            <value>NBA Player</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>FantasyTeams</relationshipLabel>
     <relationshipName>FantasyTeams</relationshipName>

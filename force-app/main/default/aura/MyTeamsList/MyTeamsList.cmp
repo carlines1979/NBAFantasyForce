@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="FantasyTeams" access="global" >
+    <aura:attribute name="teamList" type="List"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    
+    <aura:method name="refreshMethod" action="{!c.doInit}" 
+                 description="Method refresh list" access="global" >  
+    </aura:method>
+    
+    <lightning:accordion allowMultipleSectionsOpen="true" >
+        <aura:iteration items="{!v.teamList}" var="item">
+            <lightning:accordionSection name="{!item.FantasyName__c}" label="{!item.FantasyName__c}">
+                <div class="slds-grid slds-large-size">
+                	<c:FantasyTeamPlayers teamId="{!item}" />
+                </div>
+                <br></br>
+                <lightning:button variant="brand-outline" label="Add Players" onclick="{!c.openModalPlayers}" class="slds-m-left_x-small" />               
+            </lightning:accordionSection>
+        </aura:iteration>        
+    </lightning:accordion>
+</aura:component>

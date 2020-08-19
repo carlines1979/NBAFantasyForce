@@ -3,14 +3,11 @@
                     default="{ 'sobjectType': 'FantasyTeam__c',
                              'FantasyName__c':''}" />
     
+    <aura:registerEvent name="TeamCreated" type="c:TeamCreated"/>
     
     <div aria-labelledby="newteamform">
         
-        <fieldset class="slds-box slds-theme--default slds-container--medium">
-            <legend id="newteamform" class="slds-text-heading--small 
-              slds-p-vertical--medium">
-              Create a Team
-            </legend>
+        
         
             <form class="slds-form--stacked">          
                 <lightning:input aura:id="FantasyTeamform" label="Team Name"
@@ -22,6 +19,6 @@
                                   variant="brand"
                                   onclick="{!c.clickCreate}"/>
             </form>
-        </fieldset>
+        
     </div>
 </aura:component>

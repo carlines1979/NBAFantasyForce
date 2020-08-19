@@ -1,26 +1,17 @@
 ({
-	createFantasyTeam : function(component, fanTeam, event) {
-        var action = component.get("c.createTeam");
-        action.setParams({
-            "fanTeam": fanTeam
-        });
-         
+	fetchFantasyTeams : function(component,helper) {
+		
+        var action = component.get("c.getUserTeams");
+        action.setParams({});
+        
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS") {
- 				//Success message display logic.
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "Success!",
-                    "message": "Team created! Now Add your players!",
-                    "type": 'success'
-                });
-                toastEvent.fire();
-                // Fire the event to refresh the list of teams
-                var cmpEvent = component.getEvent("TeamCreated");
-                console.log("fire event" + cmpEvent);
-				cmpEvent.fire();
-                
+ 				//Success set the list.
+ 				var rows = response.getReturnValue();
+                console.log("response: " + rows);
+                component.set("v.teamList", rows); 
+
             } else if (state === "ERROR") {
                 let errors = response.getError();
                 let message = 'Unknown error'; // Default error message
@@ -48,6 +39,5 @@
             }
         });
         $A.enqueueAction(action);
-		
 	},
 })
