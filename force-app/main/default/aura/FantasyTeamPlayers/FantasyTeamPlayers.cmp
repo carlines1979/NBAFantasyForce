@@ -8,22 +8,36 @@
 	<lightning:layout multipleRows="true">
         
         	<lightning:layoutItem  >
-                <aura:iteration items="{!v.playersList}" var="item">
-                <div class="playerproperty slds-grid slds-size_12-of-12">
-                    		<div class="slds-col slds-size_4-of-12">
-                                <span class="label">Name: </span>
-                                <span>{!item.Name}</span>
-                    		</div>
-                    		<div class="slds-col slds-size_4-of-12">
-                                <span class="label"> Position: </span>
-                                <span>{!item.Position__c}</span>
-                    		</div>
-                    		<div class="slds-col slds-size_4-of-12">
-                                <span class="label"> Height: </span>
-                                <span>{!item.Height__c}</span>
-                    		</div>
-                </div>
-                 </aura:iteration>
+                <aura:if isTrue="{!not(empty(v.playersList))}" >
+                    <aura:iteration items="{!v.playersList}" var="item">
+                        <div class="playerproperty slds-grid slds-size_12-of-12">
+                                <div class="slds-col slds-size_5-of-12">
+                                    <span class="label">Name: </span>
+                                    <span>{!item.Name}</span>
+                                </div>
+                                <div class="slds-col slds-size_5-of-12">
+                                    <span class="label"> Team: </span>
+                                    <span>{!item.Team__r.Name}</span>
+                                </div>
+                                <div class="slds-col slds-size_5-of-12">
+                                    <span class="label"> Position: </span>
+                                    <span>{!item.Position__c}</span>
+                                </div>
+                                <div class="slds-col slds-size_5-of-12">
+                                    <span class="label"> Height: </span>
+                                    <span>{!item.Height__c}</span>
+                                </div>
+                            	<div>
+                                    <div class="slds-col slds-size_6-of-12">
+                                    	<button class="removeplayer slds-button slds-text-link_reset" onclick="{!c.removePlayer}" id="{!item.Id}">Remove</button>                                    
+                                    </div>                           
+                            	</div>
+                            </div>
+                     </aura:iteration>
+                     <aura:set  attribute="else">
+                          <div>No players have been added yet. Add players and start playing!!</div>
+                     </aura:set>
+                </aura:if>
             </lightning:layoutItem>
         
         

@@ -1,8 +1,11 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="FantasyTeams" access="global" >
     <aura:attribute name="teamList" type="List"/>
-    
-    
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+        
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    
+    <aura:handler name="ClosePlayerSelection" event="c:ClosePlayerSelection" action="{!c.onmodalclose}" />
+    
     
     <aura:method name="refreshMethod" action="{!c.doInit}" 
                  description="Method refresh list" access="global" >  
@@ -15,8 +18,12 @@
                 	<c:FantasyTeamPlayers teamId="{!item}" />
                 </div>
                 <br></br>
-                <lightning:button variant="brand-outline" label="Add Players" onclick="{!c.openModalPlayers}" class="slds-m-left_x-small" />               
+                <button type="button" class="slds-button slds-button_outline-brand slds-m-left_x-small" onclick="{!c.openModalPlayers}" id="{!item.id}" >+ Add Players</button>               
             </lightning:accordionSection>
         </aura:iteration>        
     </lightning:accordion>
+    
+    <aura:if isTrue="{!v.isModalOpen}">
+       		<c:SearchPlayers aura:id="CmpSearchPlayers"/>
+    </aura:if>
 </aura:component>

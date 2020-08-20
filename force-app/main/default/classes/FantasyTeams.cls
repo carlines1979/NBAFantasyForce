@@ -51,7 +51,7 @@ public without sharing class FantasyTeams {
             List<Contact> teamPlayers = new List<Contact>();
         	Id teamId = team.Id;
             Id recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('NBA Player').getRecordTypeId();
-            teamPlayers = [SELECT id, Name, Position__c , Height__c FROM Contact WHERE 
+            teamPlayers = [SELECT id, Name, Position__c , Height__c, Team__r.Name FROM Contact WHERE 
                            Id IN (SELECT Player__c FROM FanTeamPlayer__c WHERE FantasyTeam__c = :teamId)
                           and RecordTypeId = :recordTypeId ] ; 
             
@@ -62,6 +62,18 @@ public without sharing class FantasyTeams {
         }       
         
     }
+    
+    @AuraEnabled
+    public static void deleteTeamPlayer(Id playerId, FantasyTeam__c team) {
+        try {
+            Id teamId = team.Id ; 
+        	FanTeamPlayer__c ftp = [SELECT id FROM FanTeamPlayer__c WHERE Player__c=:playerId AND FantasyTeam__c=:teamId]; 
+        	delete ftp;            
+        } catch (Exception e) {
+            throw new AuraHandledException('Server-side Error: ' + e.getMessage() ); 
+        }
+
+    } 
     
     
 }

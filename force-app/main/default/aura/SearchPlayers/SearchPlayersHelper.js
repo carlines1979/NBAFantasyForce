@@ -1,17 +1,15 @@
 ({
-	fetchTeamPlayers : function(component, teamId) {
-        var action = component.get("c.getTeamPlayers");
-        action.setParams({team : teamId});
+	fetchNBATeams : function(component, event) {
         
+        var action = component.get("c.getNBATeams");
+        // No input params
+        action.setParams({});
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS") {
- 				//Success set the list.
- 				
+ 				//Success set the Teams list.
  				var rows = response.getReturnValue();
-                console.log("Response: " + JSON.stringify(response.getReturnValue()) );
-                console.log("response: " + rows);
-                component.set("v.playersList", rows); 
+                component.set("v.teams", rows); 
 
             } else if (state === "ERROR") {
                 let errors = response.getError();
@@ -43,24 +41,25 @@
 		
 	},
     
-    deleteTeamPlayer : function (component,  playerId, teamId) {
+    fetchNBAPlayers : function(component, teamId) {
         
-        var action = component.get("c.deleteTeamPlayer");
-        action.setParams({team : teamId,
-                          playerId : playerId});
+       	component.set('v.columns', [
+            	{label: 'Player Name', fieldName: 'Name', type: 'text'},
+            	{label: 'Position', fieldName: 'Position__c', type: 'text'},
+                {label: 'Height', fieldName: 'Height__c', type: 'text'},
+            	{label: 'Weight', fieldName: 'Weight__c', type: 'text'},
+            ]);
+        
+        var action = component.get("c.getNBATeamPlayers");
+        console.log("TEAM ID " + teamId); 
+        action.setParams({NBATeamId: teamId});
         
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS") {
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "Success!",
-                    "message": "Player removed from Fantasy Team", 
-                    "type" : 'success'
-				});
-                toastEvent.fire();
- 				//Fetch player to refresh the view				
- 				this.fetchTeamPlayers(component, teamId); 
+ 				//Success set the list.          
+ 				var data = response.getReturnValue();
+                component.set("v.data", data); 
 
             } else if (state === "ERROR") {
                 let errors = response.getError();
@@ -90,5 +89,6 @@
         });
         $A.enqueueAction(action);
         
-    },
+        
+    }
 })

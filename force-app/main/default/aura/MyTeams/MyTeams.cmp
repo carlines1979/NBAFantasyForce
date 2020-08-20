@@ -11,7 +11,7 @@
         <c:NewTeam />
     </div>
     
-    <div class="slds-box slds-theme--default slds-container--large">
+    <div class="slds-box slds-theme--default">
         <legend id="fantasyteams" class="slds-text-heading--small 
                                         slds-p-vertical--large">
             Fantasy Teams

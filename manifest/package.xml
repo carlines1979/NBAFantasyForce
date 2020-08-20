@@ -5,6 +5,7 @@
         <members>PlayerStats</members>
         <members>TeamGames</members>
         <members>FantasyTeams</members>
+        <members>SearchPlayersController</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -21,12 +22,13 @@
     <types>
         <members>Team__c</members>
         <members>FantasyTeam__c</members>
-        <members>Players</members>
         <name>CustomTab</name>
     </types>
     <types>
         <members>ClosePlayerGames</members>
         <members>CloseTeamGames</members>
+        <members>ClosePlayerSelection</members>
+        <members>TeamCreated</members>
         <members>GamesReview</members>
         <members>PlayerGames</members>
         <members>PlayerStats</members>
@@ -36,6 +38,7 @@
         <members>MyTeams</members>
         <members>MyTeamsList</members>
         <members>FantasyTeamPlayers</members>
+        <members>SearchPlayers</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

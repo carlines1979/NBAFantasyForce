@@ -18,6 +18,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SearchPlayersController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TeamGames</apexClass>
         <enabled>false</enabled>
     </classAccesses>
