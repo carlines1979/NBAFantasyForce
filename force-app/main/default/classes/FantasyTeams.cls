@@ -75,5 +75,22 @@ public without sharing class FantasyTeams {
 
     } 
     
+    @AuraEnabled
+    public static void deleteTeam(String teamId) {
+        
+        try{
+            // Delete the team and the players on it. 
+            List<FanTeamPlayer__c> playersList = [Select Id FROM FanTeamPlayer__c WHERE FantasyTeam__c = :teamId];
+            FantasyTeam__c fanTeam = [Select Id FROM FantasyTeam__c WHERE id=:teamId]; 
+            delete playersList;
+            delete fanteam; 
+            
+        } catch (Exception e) {
+            throw new AuraHandledException('Server-side Error: ' + e.getMessage() ); 
+        }
+        
+        
+    }
+    
     
 }

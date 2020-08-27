@@ -18,7 +18,8 @@
                 	<c:FantasyTeamPlayers teamId="{!item}" />
                 </div>
                 <br></br>
-                <button type="button" class="slds-button slds-button_outline-brand slds-m-left_x-small" onclick="{!c.openModalPlayers}" id="{!item.Id}" >+ Add Players</button>               
+                <button type="button" class="slds-button slds-button_outline-brand slds-m-left_x-small" onclick="{!c.openModalPlayers}" id="{!item.Id}" >+ Add Players</button>    
+                <button type="button" class="slds-button slds-button_text-destructive slds-m-left_x-small" onclick="{!c.deleteFantasyTeam}" id="{!item.Id}" >Delete Team</button>
             </lightning:accordionSection>
         </aura:iteration>        
     </lightning:accordion>

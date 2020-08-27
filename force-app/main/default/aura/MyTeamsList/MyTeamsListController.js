@@ -16,5 +16,10 @@
     onmodalclose : function(component, event, helper){
         component.set("v.isModalOpen", false);
         this.doInit(component, event, helper); 
-    }
+    }, 
+    
+    deleteFantasyTeam : function(component, event, helper){
+        var teamId = event.target.id;
+        helper.deleteTeam(component, event, teamId);        
+    },
 })
