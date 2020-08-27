@@ -1,0 +1,1 @@
+<aura:event type="APPLICATION" description="Fired after adding a player to a Fantasy Team" />

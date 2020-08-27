@@ -1,7 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
-        
-        console.log("TEAM ID: " + JSON.stringify(component.get("v.teamId")) ); 
+        console.log("INIT FTPcontroller"); 
         var teamId = component.get("v.teamId"); 
         helper.fetchTeamPlayers(component, teamId);
 		

@@ -33,5 +33,18 @@ public without sharing class SearchPlayersController {
         }
         
     }
+    
+    @AuraEnabled
+    public static void addPlayerToTeam(Id fanteam , Contact player){
+        try {
+             FanTeamPlayer__c ftp = new FanTeamPlayer__c (Player__c = player.Id , FantasyTeam__C = fanteam);
+        
+       		 insert ftp;
+        } catch (Exception e) {
+            throw new AuraHandledException('Server-side Error: ' + e.getMessage() ); 
+        }
+ 
+        
+    }
 
 }

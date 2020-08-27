@@ -3,9 +3,12 @@
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="teams" type="Object"/>
     <aura:attribute name="FanTeamId" type="String"/>
+    <aura:attribute name="playerSelected" type="Contact"/>
+    <aura:attribute name="noPlayerSelected" type="Boolean" default="true" />
     
     <!-- Register Component event to close the popup--> 
     <aura:registerEvent name="ClosePlayerSelection" type="c:ClosePlayerSelection"  />
+    <aura:registerEvent name="PlayerAdded" type="c:PlayerAdded"  />
     
     <aura:method name="initMethod" action="{!c.doInit}" 
                  description="Method receive parameters" access="global" >  
@@ -46,6 +49,7 @@
                                     data="{! v.data }"
                                     columns="{! v.columns }"
                                     hideCheckboxColumn="false"
+                                    onrowselection="{! c.getSelectedPlayerId }"
                                     maxRowSelection="1"/>
                         <aura:set attribute="else" >
                             <div class="slds-align_absolute-center" >Select a Team</div>
@@ -61,6 +65,7 @@
                 <lightning:button variant="neutral"
                                   label="Add Player"
                                   title="Add Player"
+                                  disabled="{!v.noPlayerSelected}"
                                   onclick="{! c.addPlayer }"/> 
                 <lightning:button variant="neutral"
                                   label="Close"

@@ -39,6 +39,7 @@
         <members>MyTeamsList</members>
         <members>FantasyTeamPlayers</members>
         <members>SearchPlayers</members>
+        <members>PlayerAdded</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

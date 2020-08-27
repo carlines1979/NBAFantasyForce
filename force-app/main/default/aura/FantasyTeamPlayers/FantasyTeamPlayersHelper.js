@@ -9,8 +9,6 @@
  				//Success set the list.
  				
  				var rows = response.getReturnValue();
-                console.log("Response: " + JSON.stringify(response.getReturnValue()) );
-                console.log("response: " + rows);
                 component.set("v.playersList", rows); 
 
             } else if (state === "ERROR") {

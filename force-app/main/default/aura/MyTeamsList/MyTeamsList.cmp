@@ -1,5 +1,5 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="FantasyTeams" access="global" >
-    <aura:attribute name="teamList" type="List"/>
+    <aura:attribute name="teamList" type="FantasyTeam__c[]"/>
     <aura:attribute name="isModalOpen" type="boolean" default="false"/>
         
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
@@ -18,7 +18,7 @@
                 	<c:FantasyTeamPlayers teamId="{!item}" />
                 </div>
                 <br></br>
-                <button type="button" class="slds-button slds-button_outline-brand slds-m-left_x-small" onclick="{!c.openModalPlayers}" id="{!item.id}" >+ Add Players</button>               
+                <button type="button" class="slds-button slds-button_outline-brand slds-m-left_x-small" onclick="{!c.openModalPlayers}" id="{!item.Id}" >+ Add Players</button>               
             </lightning:accordionSection>
         </aura:iteration>        
     </lightning:accordion>

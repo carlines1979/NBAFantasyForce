@@ -3,6 +3,7 @@
     <aura:attribute name="playersList" type="List"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />    
+    <aura:handler event="c:PlayerAdded" action="{!c.doInit}"/>
     
   <div class="slds-grid slds-large-size">
 	<lightning:layout multipleRows="true">

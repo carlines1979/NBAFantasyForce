@@ -20,6 +20,7 @@
                 var cmpEvent = component.getEvent("TeamCreated");
                 console.log("fire event" + cmpEvent);
 				cmpEvent.fire();
+                component.set("!v.newFantasyTeam.FantasyName__c",""); 
                 
             } else if (state === "ERROR") {
                 let errors = response.getError();
