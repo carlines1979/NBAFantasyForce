@@ -13,8 +13,12 @@
     
     <div class="slds-box slds-theme--default">
         <legend id="fantasyteams" class="slds-text-heading--small 
-                                        slds-p-vertical--large">
-            Fantasy Teams
+                                        slds-p-vertical--small">
+            Your Fantasy Teams
+        </legend>
+         <legend class="slds-text-heading--small 
+                                        slds-p-vertical--samll">
+            Add up to 6 players per team.
         </legend>
         <c:MyTeamsList aura:id="teamlist" />
     </div>

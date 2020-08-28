@@ -4,6 +4,7 @@
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />    
     <aura:handler event="c:PlayerAdded" action="{!c.doInit}"/>
+    <aura:registerEvent name="MaxPlayers" type="c:MaxPlayers" />
     
   <div class="slds-grid slds-large-size">
 	<lightning:layout multipleRows="true">

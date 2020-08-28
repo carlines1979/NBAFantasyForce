@@ -1,5 +1,5 @@
 ({
-	fetchTeamPlayers : function(component, teamId) {
+	fetchTeamPlayers : function(component, event, teamId) {
         var action = component.get("c.getTeamPlayers");
         action.setParams({team : teamId});
         
@@ -7,10 +7,15 @@
             var state = response.getState();
             if (state === "SUCCESS") {
  				//Success set the list.
- 				
  				var rows = response.getReturnValue();
                 component.set("v.playersList", rows); 
-
+                
+                if (rows.length > 5){
+                    var e = component.getEvent("MaxPlayers");
+                    e.setParams({"teamId" : component.get("v.teamId").Id});
+                    e.fire();
+                }
+                
             } else if (state === "ERROR") {
                 let errors = response.getError();
                 let message = 'Unknown error'; // Default error message
@@ -41,7 +46,7 @@
 		
 	},
     
-    deleteTeamPlayer : function (component,  playerId, teamId) {
+    deleteTeamPlayer : function (component, event,  playerId, teamId) {
         
         var action = component.get("c.deleteTeamPlayer");
         action.setParams({team : teamId,
@@ -58,7 +63,7 @@
 				});
                 toastEvent.fire();
  				//Fetch player to refresh the view				
- 				this.fetchTeamPlayers(component, teamId); 
+ 				this.fetchTeamPlayers(component, event, teamId); 
 
             } else if (state === "ERROR") {
                 let errors = response.getError();
