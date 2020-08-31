@@ -52,13 +52,43 @@ public without sharing class SearchPlayersController {
         
         try {
             Id recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('NBA Player').getRecordTypeId();
-            return [SELECT FirstName, LastName, Position__c, Team__r.Name FROM Contact 
+            return [SELECT FirstName, LastName, Name,  Position__c, Team__r.Name, ServerId__c FROM Contact 
                     WHERE RecordTypeId 	= :recordTypeId AND
                    		 (FirstName LIKE :name+'%' OR LastName LIKE :name+'%' OR Name LIKE :name+'%')] ; 
             
         } catch (Exception e) {
             throw new AuraHandledException('Server-side Error: ' + e.getMessage()); 
         }
+        
+        
+    }
+    
+    @AuraEnabled 
+    public static List<DataSet> getLastSeasonStats(String ServerId) {
+        
+        List<DataSet> dataSet = new List<DataSet>();     
+        Map<String,Decimal> stats = PlayerStats.getAverStats('2018', ServerId); 
+        
+        Set<String> keys = stats.keySet();        
+        for(String k : keys) {
+            Decimal total = stats.get(k); 
+            dataSet.add(new DataSet(k ,total));
+        }
+        
+        return dataSet;
+        
+    }
+    
+    
+    public class DataSet{
+        public DataSet(String label ,Decimal count){
+            this.label  = label ; 
+            this.count = count ;
+        }
+        @AuraEnabled
+        public String label {get;set;}
+        @AuraEnabled
+        public Decimal  count {get;set;}
         
         
     }

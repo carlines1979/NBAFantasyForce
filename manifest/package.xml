@@ -49,6 +49,7 @@
     </types>
     <types>
         <members>LOGOS</members>
+        <members>ChartJs</members>
         <name>StaticResource</name>
     </types>
     <types>

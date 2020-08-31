@@ -3,8 +3,9 @@
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="PlayerName" type="String" /> 
     <aura:attribute name="playerSelected" type="Contact"/>
+    <aura:attribute name="playerSelectedName" type="Contact"/>
     <aura:attribute name="noPlayerSelected" type="Boolean" default="true" />
-    
+        
     
     <aura:method name="initMethod" action="{!c.doInit}" 
                  description="Method receive parameters" access="global" >  
@@ -13,9 +14,9 @@
     
     <!-- the container element determine the height of the datatable -->
     <aura:if isTrue="{!not(empty(v.PlayerName))}" >
-    <div style="height: 400px" >
-        <div class="slds-scrollable_y" style="height:100%;">
-            <fieldset class="slds-box slds-theme--default " style="height:99%;" >
+    <div style="height: auto" class="slds-scrollable_y" >
+        
+            <fieldset class="slds-box slds-theme--default slds-scrollable_y"  style="height:99%;" >
                 
                 <aura:if isTrue="{!not(empty(v.data))}">
                     <lightning:datatable
@@ -25,13 +26,28 @@
                                          hideCheckboxColumn="false"
                                          onrowselection="{! c.getSelectedPlayerId }"
                                          maxRowSelection="1"/>
+                    <lightning:button variant="brand"
+                          label="See Stats"
+                          title="See Stats"
+                          class="slds-m-top--medium"
+                          disabled="{!v.noPlayerSelected}"
+                          onclick="{! c.StatsPlayer }"/>
                     <aura:set attribute="else" >
                         <div class="slds-align_absolute-center" >No Players match your searching criteria.</div>
-                    </aura:set>   
+                    </aura:set> 
+                  
                 </aura:if>
+                
             </fieldset>
-        </div>
+             
+
+       
     </div>
     </aura:if>
     
+    
+   
+    <ltng:require scripts="{!$Resource.ChartJs+'/Chart.bundle.min.js'}"/>
+    <canvas id="bar-chart" width="950" height="350"></canvas>
+ 
 </aura:component>
