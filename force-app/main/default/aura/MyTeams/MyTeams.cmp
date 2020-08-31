@@ -17,7 +17,7 @@
             Your Fantasy Teams
         </legend>
          <legend class="slds-text-heading--small 
-                                        slds-p-vertical--samll">
+                                        slds-p-vertical--small">
             Add up to 6 players per team.
         </legend>
         <c:MyTeamsList aura:id="teamlist" />

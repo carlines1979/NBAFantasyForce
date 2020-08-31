@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="SearchPlayersController" access="global"  >
+    <aura:attribute name="searchInput" type="String" default=""/>
+
+   
+    <aura:registerEvent name="PlayerSearch" type="c:PlayerSearch"/>
+   
+    <div aria-labelledby="searchplayerform">
+        
+        
+            <form class="slds-form--stacked">          
+                <lightning:input aura:id="SearchPlayer" label="Search by Name"
+                                 name="searchname"
+                                 value="{!v.searchInput}"
+                                 required="true"/> 
+                 <lightning:button label="Search" 
+                                  class="slds-m-top--medium"
+                                  variant="brand"
+                                  onclick="{!c.clickSearch}"/>
+            </form>
+        
+    </div>
+</aura:component>

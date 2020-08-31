@@ -41,6 +41,10 @@
         <members>SearchPlayers</members>
         <members>PlayerAdded</members>
         <members>MaxPlayers</members>
+        <members>Players</members>
+        <members>SearchPlayer</members>
+        <members>PlayersFound</members>
+        <members>PlayerSearch</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

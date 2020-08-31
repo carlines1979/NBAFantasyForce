@@ -46,5 +46,21 @@ public without sharing class SearchPlayersController {
  
         
     }
+    
+    @AuraEnabled
+    public static List<Contact> searchPlayerByName(String name){
+        
+        try {
+            Id recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('NBA Player').getRecordTypeId();
+            return [SELECT FirstName, LastName, Position__c, Team__r.Name FROM Contact 
+                    WHERE RecordTypeId 	= :recordTypeId AND
+                   		 (FirstName LIKE :name+'%' OR LastName LIKE :name+'%' OR Name LIKE :name+'%')] ; 
+            
+        } catch (Exception e) {
+            throw new AuraHandledException('Server-side Error: ' + e.getMessage()); 
+        }
+        
+        
+    }
 
 }

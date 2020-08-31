@@ -1,0 +1,21 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"  access="global"  >
+	
+    
+    <aura:handler name="PlayerSearch" event="c:PlayerSearch" action="{!c.search}"/>
+    
+    <div class="slds-box slds-theme--shade slds-container--medium slds-m-bottom_x-small slds-m-top_x-small">
+        <legend id="searchplayer" class="slds-text-heading--small 
+                                        slds-p-vertical--medium">
+            Search Players
+        </legend>
+        <c:SearchPlayer />
+    </div>
+    <div class="slds-box slds-theme--shade slds-container--large slds-m-bottom_x-small slds-m-top_x-small">
+        <legend id="searchplayer" class="slds-text-heading--small 
+                                        slds-p-vertical--medium">
+            Players Found
+        </legend>
+        <c:PlayersFound aura:id="childplayersfound" />
+    </div>
+    
+</aura:component>

@@ -1,0 +1,37 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="SearchPlayersController" access="global" >
+	<aura:attribute name="data" type="Object[]"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="PlayerName" type="String" /> 
+    <aura:attribute name="playerSelected" type="Contact"/>
+    <aura:attribute name="noPlayerSelected" type="Boolean" default="true" />
+    
+    
+    <aura:method name="initMethod" action="{!c.doInit}" 
+                 description="Method receive parameters" access="global" >  
+        <aura:attribute name="playerName" type="String" /> 
+    </aura:method>
+    
+    <!-- the container element determine the height of the datatable -->
+    <aura:if isTrue="{!not(empty(v.PlayerName))}" >
+    <div style="height: 400px" >
+        <div class="slds-scrollable_y" style="height:100%;">
+            <fieldset class="slds-box slds-theme--default " style="height:99%;" >
+                
+                <aura:if isTrue="{!not(empty(v.data))}">
+                    <lightning:datatable
+                                         keyField="Id"                      
+                                         data="{! v.data }"
+                                         columns="{! v.columns }"
+                                         hideCheckboxColumn="false"
+                                         onrowselection="{! c.getSelectedPlayerId }"
+                                         maxRowSelection="1"/>
+                    <aura:set attribute="else" >
+                        <div class="slds-align_absolute-center" >No Players match your searching criteria.</div>
+                    </aura:set>   
+                </aura:if>
+            </fieldset>
+        </div>
+    </div>
+    </aura:if>
+    
+</aura:component>
