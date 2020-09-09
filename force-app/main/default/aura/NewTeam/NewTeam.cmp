@@ -13,7 +13,8 @@
                 <lightning:input aura:id="FantasyTeamform" label="Team Name"
                                  name="teamname"
                                  value="{!v.newFantasyTeam.FantasyName__c}"
-                                 required="true"/> 
+                                 required="true"
+                                 /> 
                  <lightning:button label="Create Team" 
                                   class="slds-m-top--medium"
                                   variant="brand"

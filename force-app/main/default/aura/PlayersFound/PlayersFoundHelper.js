@@ -85,8 +85,31 @@
                     options: {
                         title: {
                             display: true,
+                            fontColor: "white",
+                            fontSize: 20,
                             text: 'Last Season Player Stats'
-                        }
+                        },
+                    
+                   		legend: {
+               		 		labels: {
+                                fontColor: "white",
+                                fontSize: 18
+                    		}
+            			},
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: "white",
+                                    fontSize: 12,
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: "white",
+                                    fontSize: 14,
+                                }
+                            }]
+            			}
                     }
                 });
                 

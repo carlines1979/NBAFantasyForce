@@ -1,6 +1,7 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"  access="global"  >
-	
+	<aura:attribute name="backgroundImageURL1" type="String" default=""/>
     
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
     <aura:handler name="PlayerSearch" event="c:PlayerSearch" action="{!c.search}"/>
     
     <div class="slds-box slds-theme--shade slds-container--medium slds-m-bottom_x-small slds-m-top_x-small">
@@ -10,7 +11,7 @@
         </legend>
         <c:SearchPlayer />
     </div>
-    <div class="slds-box slds-theme--shade slds-container--large slds-m-bottom_x-small slds-m-top_x-small">
+    <div class="slds-box slds-theme--shade slds-container--xlarge slds-m-bottom_x-small slds-m-top_x-small" style="{!'position: relative; background:' + ' url(' + v.backgroundImageURL1 +') no-repeat;background-position: center;background-size: cover;'}">
         <legend id="searchplayer" class="slds-text-heading--small 
                                         slds-p-vertical--medium">
             Players Found

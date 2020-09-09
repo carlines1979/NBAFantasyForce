@@ -16,10 +16,10 @@
     <aura:if isTrue="{!not(empty(v.PlayerName))}" >
     <div style="height: auto" class="slds-scrollable_y" >
         
-            <fieldset class="slds-box slds-theme--default slds-scrollable_y"  style="height:99%;" >
+            <fieldset class="slds-box slds-theme--default slds-scrollable_y" id="fieldset"  style="height:99%;" >
                 
                 <aura:if isTrue="{!not(empty(v.data))}">
-                    <lightning:datatable
+                    <lightning:datatable id="datatable"
                                          keyField="Id"                      
                                          data="{! v.data }"
                                          columns="{! v.columns }"

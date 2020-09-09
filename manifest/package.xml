@@ -6,6 +6,7 @@
         <members>TeamGames</members>
         <members>FantasyTeams</members>
         <members>SearchPlayersController</members>
+        <members>TeamsController</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -45,11 +46,14 @@
         <members>SearchPlayer</members>
         <members>PlayersFound</members>
         <members>PlayerSearch</members>
+        <members>Teams</members>
+        <members>TeamTile</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>LOGOS</members>
         <members>ChartJs</members>
+        <members>CommunityImages</members>
         <name>StaticResource</name>
     </types>
     <types>

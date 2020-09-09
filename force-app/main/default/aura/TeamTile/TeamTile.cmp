@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="team" type="Team__c" default="" /> 
+    
+    <lightning:button class="tile" onclick="{!c.onBoatClick}">
+        <div style="{!'background-image: url(' + v.team.Logo__c + ')'}" class="innertile">
+                <div class="lower-third">
+                <h1 class="slds-truncate">{!v.team.Name}</h1>
+                </div>
+        </div>
+    </lightning:button>
+    
+</aura:component>
